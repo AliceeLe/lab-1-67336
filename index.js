@@ -10,6 +10,7 @@
 console.log("Hello, World!");
 
 // Write JavaScript code below to display "Welcome to JavaScript!" in the console.
+console.log("Welcome to JavaScript!");
 
 // Your code here
 
@@ -19,7 +20,7 @@ console.log("Hello, World!");
 let firstName = "Katelyn";
 let age = 20;
 let isStudent = true;
-console.log(name, age, isStudent);
+console.log(firstName, age, isStudent);
 
 // The following examples are given to illustrate how to use string concatenation, simple arithmetic/manipulation of numerical variables, 
 // and console logging with variables works in Javascript.
@@ -31,6 +32,9 @@ console.log(greeting, nextYearAge);
 // Then, perform some operations with these variables and display the results in the console.
 
 // Your code here
+let favoriteColor = "blue";
+let height = 167
+let likeJavaScript = false 
 
 //Challenge 1.2
 // Here is an example of a function in JS that calculates the sum of two given numbers a and b:
@@ -44,6 +48,17 @@ console.log(sum(5, 7));
 // Call the function with different arguments and display the results in the console.
 
 // Your code here
+function concat(a, b) {
+    if (typeof a === 'string' && typeof b === 'string') {
+        return a+b;
+    }
+    else {
+        return "Invalid Arguments!";
+    }
+}
+
+console.log(concat("a", "b"));
+console.log(concat("1", "b"));
 
 // Challenge 1.3
 // Here is an example of if-else statements in JSON. It logs to console depending on whether certain conditions are fulfilled.
@@ -59,6 +74,27 @@ if (number > 0) {
 // Write a program that checks if a string is empty, has only one character, or has multiple characters, and displays the result.
 
 // Your code here
+function checkLen(s) {
+    if (typeof s === 'string') {
+        const len = s.length;
+
+        if (len === 0) {
+            return "Empty string";
+        }
+        else if (len === 1) {
+            return "One character";
+        }
+        else {
+            return "Multiple characters";
+        }
+    }
+    else {
+        return "Invalid Arguments!";
+    }
+}
+
+console.log(checkLen("a"));
+console.log(checkLen(""));
 
 // Challenge 1.4
 // Here we have an example of a for loop that prints its incrementation to the console from 1 to 10.
@@ -69,6 +105,9 @@ for (let i = 1; i <= 10; i++) {
 // Write a program that prints only the even numbers from 1 to 20 using a for loop.
 
 // Your code here
+for (let i = 2; i <= 20; i=i+2) {
+    console.log(i);
+}
 
 // Challenge 1.5
 // Here we have an example of a while loop that prints its incrementation to the console from 1 to 10.
@@ -78,7 +117,13 @@ while (i <= 10) {
     i++;
 }
 
+console.log("Start here");
 // Write a program that prints the even numbers from 20 to 1 using a while loop.
+let num = 2;
+while (num <= 20) {
+    console.log(num);
+    num=num+2;
+}
 
 //Your code here
 
@@ -99,6 +144,13 @@ console.log(arraySum(numbers));
 // Hint: use .join()
 
 // Your code here
+let favFood = ["Bun dau", "Pho", "Bun bo", "Sushi", "Pad thai"];
+
+function foodArr(arr) {
+    return arr.join(',');
+}
+
+console.log(foodArr(favFood));
 
 // Challenge 2.2
 // Here we define a Person object with various properties like name, age, and job.
@@ -115,8 +167,16 @@ function printPerson(p) {
 printPerson(person);
 
 // Create an object representing a car (make, model, year). 
+let car =  {
+    make: "Tesla",
+    model: "Cybertruck",
+    year: 2024
+}
 // Then, write a function that takes a car object and prints its properties.
-
+function printCar(c) {
+    console.log(`Make: ${c.make}, Model: ${c.model}, Year: ${c.year}`);
+}
+printCar(car)
 // Your code here
 
 // Challenge 2.3
@@ -136,8 +196,27 @@ console.log(updateJob({name: "Peter", age: 21, job: "Engineer"}, "Manager"));
 
 // Write a function that removes the last item from an array. 
 // Hint: use .pop() instead of .push()
+console.log("Here");
+function removeLastElem(arr) {
+    arr.pop();
+    return arr;
+}
+
+console.log(removeLastElem([1, 2, 3]));
 
 // Then, write a function that updates the year of a car object.
+function updateYearCar(c, year) {
+    c.Year = year;
+    return c;
+}
+
+// Then, write a function that takes a car object and prints its properties.
+function printCar(c) {
+    console.log(`Make: ${c.make}, Model: ${c.model}, Year: ${c.year}`);
+}
+
+updateYearCar(car, 2004);
+printCar(car)
 
 // Your code here
 
@@ -167,6 +246,9 @@ console.log(myDiv, myP, myH1);
 // Make sure to use both getElementById() and querySelector() to get in practice with both!
 
 // Your code here
+let anotherDiv = document.getElementById("anotherDiv");
+let anotherP = document.querySelector(".anotherP");
+console.log(anotherDiv, anotherP);
 
 // Challenge 3.2
 // Here is an example of changing the content of an element we selected in Challenge 3.1:
@@ -175,6 +257,8 @@ myDiv.textContent = "Hello, World!";
 // Write a program that changes the content of an element you selected in Challenge 3.1.
 
 // Your code here
+anotherDiv.textContent = "Hi";
+anotherP.textContent = "How are you?";
 
 // See the section marked "Challenge 3.2 | Example" in index.html for an example of how we can use JS manipulation of selected elements to make a button.
 // Add a button to the HTML file and write a program that changes the content of a div when the button is clicked.
@@ -190,6 +274,9 @@ document.body.appendChild(newElement);
 // Write code that creates a new element and adds it to the DOM.
 
 // Your code here
+let newElement = document.createElement("p");
+newElement.textContent = "New element added.";
+document.body.appendChild(newElement);
 
 // See the section marked "Challenge 3.3.2 | Example" in index.html for a more advanced example of how we can use this ability to create and add elements to create a dynamic grocery list.
 

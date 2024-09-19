@@ -59,6 +59,9 @@
         <div id="anotherContentDiv"><h4>Your Original Content</h4></div>
         <script>
             // Your code here
+            document.getElementById("changeAnotherContentBtn").addEventListener("click", function() {
+                document.getElementById("anotherContentDiv").textContent = "Surprise, surprise!";
+            });
         </script>
 
         <hr>
@@ -123,12 +126,15 @@
         <h1 style="color: blue; text-align: center;">Challenge 4.1 | Your Turn</h1>
         <!-- Challenge 4.1 | Your Turn -->
          <!-- Here's a resource for a potential hint: https://rb.gy/2vl4fs -->
-        <div id="colorDiv" style="width:100px; height:100px; background-color:lightblue;"></div>
-        <script>
-            // Your code here
-        </script>
+        <div id="colorDiv" style="width:100px; height:100px; background:lightblue;"></div>
         <button id="colorBtn">Change Color</button>
-
+        <script>
+            document.getElementById("colorBtn").addEventListener("click", function() {
+                var color = [, "#3C9EE7", "#E7993C", "#E73C99", "#3CE746", "#E7993C"];
+                let randomColor = color[(Math.floor(Math.random() * color.length))];
+                document.getElementById("colorDiv").style.background = randomColor;
+            });
+        </script>
         <hr>
     </section>
     
@@ -185,12 +191,29 @@
         <h4 id="yourResult">[Your Promise Results Here]</h4>
         <script>
             function yourAsyncFunction() {
-                // Your code here
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        let num = Math.random();
+                        if (num > 0.5) {
+                            resolve(num);
+                        } else {
+                            reject('Num smaller than 0.5');
+                        }
+                    }, 1000);
+                });
             }
-
             document.getElementById('handleYourAsyncButton').addEventListener('click', () => {
-                // Your Code here
+                yourAsyncFunction()
+                    .then(message => {
+                        document.getElementById('yourResult').innerText = message;
+                        document.getElementById('yourResult').style.color = 'green';
+                    })
+                    .catch(error => {
+                        document.getElementById('yourResult').innerText = error;
+                        document.getElementById('yourResult').style.color = 'red';
+                    });
             });
+
         </script>
 
         <hr>
