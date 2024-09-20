@@ -274,9 +274,9 @@ document.body.appendChild(newElement);
 // Write code that creates a new element and adds it to the DOM.
 
 // Your code here
-let newElement = document.createElement("p");
-newElement.textContent = "New element added.";
-document.body.appendChild(newElement);
+let myNewElement = document.createElement("p");
+myNewElement.textContent = "New element added.";
+document.body.appendChild(myNewElement);
 
 // See the section marked "Challenge 3.3.2 | Example" in index.html for a more advanced example of how we can use this ability to create and add elements to create a dynamic grocery list.
 
@@ -342,7 +342,7 @@ function displayRawData(data) {
 
     // Adds the element with the raw data to the DOM in order to display it.
     dataDisplay.appendChild(rawElement);
-}
+}  
 
 // Challenge 5.2.2 | Example
 // Now that we've seen what the JSON response from the API endpoint looks like, we can take the API data and 
@@ -380,13 +380,29 @@ function displayData(data) {
 // Hint: use the helpful tip from the example in Challenge 5.2.1 to reference the JSON output quickly.
 
 function fetchYourData() {
-    // Your code here
+    console.log('Button clicked, starting fetch...');
+    fetch('https://api.github.com/users')
+    .then(response => response.json())
+    .then(data => {console.log(data);
+        displayYourData(data);})
+    .catch(error => console.error('Error:', error));
 }
 
 function displayYourData(data) {
-    const dataDisplay = document.getElementById('yourDataDisplay');
-    dataDisplay.innerHTML = ''; 
-    // Your code here
+    const yourDataDisplay = document.getElementById('yourDataDisplay');
+    yourDataDisplay.innerHTML = '';
+
+    // Parses through the raw JSON to extract the information we want to display.
+    data.forEach(user => {
+        // Dynamically creates each element.
+        const userElement = document.createElement('div');
+        // Optional but allows us to easily add styling in later on for any divs with all elements with the class "user".
+        userElement.classList.add('login');
+        // Dynamically generates the HTML we are using to display the data.
+        userElement.innerHTML = `<p>login: ${user.login} | url: ${user.url}</p>`;
+        // Adds each userElement to the DOM to display it.
+        yourDataDisplay.appendChild(userElement);
+    });
 }
 
 // Challenge 6
